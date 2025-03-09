@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
-import cars from '@app/app/routes/cars';
-import carTypesRoutes from '@app/app/routes/carTypes';
-import partsRoutes from '@app/app/routes/part';
+import tasks from '@app/app/routes/tasks';
 
 const routes = Router();
 
@@ -14,8 +12,6 @@ routes.get('/', (req, res) => {
   });
 });
 
-routes.use(cars);
-routes.use(carTypesRoutes);
-routes.use(partsRoutes);
+routes.use(tasks);
 
 export default routes;

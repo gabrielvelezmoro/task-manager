@@ -28,10 +28,10 @@ module.exports = {
             allowNull: false,
           },
           data_criacao: {
-            type: Sequelize.STRING,
+            type: Sequelize.DATE,
           },
           data_atualizacao: {
-            type: Sequelize.STRING,
+            type: Sequelize.DATE,
           },
         },
         { transaction },

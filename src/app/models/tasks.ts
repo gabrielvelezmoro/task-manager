@@ -7,6 +7,7 @@ class Cars extends Model {
         id: {
           type: DataTypes.UUIDV4,
           allowNull: false,
+          primaryKey: true,
         },
         titulo: {
           type: DataTypes.STRING,
@@ -21,16 +22,16 @@ class Cars extends Model {
           allowNull: false,
         },
         data_de_criacao: {
-          type: DataTypes.STRING,
+          type: DataTypes.DATE,
           allowNull: false,
         },
         data_de_atualizacao: {
-          type: DataTypes.STRING,
+          type: DataTypes.DATE,
           allowNull: false,
         },
       },
       {
-        tableName: 'cars',
+        tableName: 'tasks',
         sequelize,
       },
     );
