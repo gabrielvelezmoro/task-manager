@@ -1,0 +1,6 @@
+node_modules
+tmp
+logs
+dist
+.env.test
+docker

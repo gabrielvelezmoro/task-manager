@@ -1,0 +1,425 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Cars Documentations",
+    "description": "Audiency",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "cars"
+    }
+  ],
+  "paths": {
+    "\/cars": {
+      "post": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Create a Car.",
+        "description": "Create a Car.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Car created",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/Car"
+                  },
+                  "example": {
+                    "id": 3,
+                    "carTypeId": 1,
+                    "description": "Gol GT"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "List all Cars.",
+        "description": "List all Cars.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/Car"
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "carTypeId": 1,
+                      "description": "Vektra",
+                      "typeDescription": "seddan"
+                    },
+                    {
+                      "id": 2,
+                      "carTypeId": 1,
+                      "description": "Vektra",
+                      "typeDescription": "seddan"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/cars\/{id}": {
+      "put": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Update a Car.",
+        "description": "Update a Car.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "0",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateUpdate"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "List Car by Id.",
+        "description": "List Car by Id.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/Car"
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "carTypeId": 1
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Delete a Car.",
+        "description": "Delete a single record of Car.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/car-type": {
+      "post": {
+        "tags": [
+          "Car Type"
+        ],
+        "summary": "List all States.",
+        "description": "List all States.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application\/json": {
+              "schema": {
+                "$ref": "#\/components\/schemas\/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": [],
+                  "example": {
+                    "count": 25
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "\/car-type\/{id}": {
+      "get": {
+        "tags": [
+          "Car Type"
+        ],
+        "summary": "Return a State.",
+        "description": "Return a single record of State.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Car Type"
+        ],
+        "summary": "Delete a Car Type.",
+        "description": "Delete a single record of State.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "State id.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application\/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#\/components\/schemas\/StateGet"
+                  },
+                  "example": {
+                    "id": "da9f1c3d-3271-4b30-b729-1196e5b7402b",
+                    "name": "Estado de state",
+                    "code": "Uf de state"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Car": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parts": {
+            "type": "array"
+          }
+        }
+      },
+      "Car Type": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "skipParam": {
+        "name": "skip",
+        "in": "query",
+        "description": "number of items to skip",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "limitParam": {
+        "name": "limit",
+        "in": "query",
+        "description": "max records to return",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "Entity not found."
+      },
+      "IllegalInput": {
+        "description": "Illegal input for operation."
+      },
+      "GeneralError": {
+        "description": "General Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GeneralError"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      },
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.org/api/oauth/dialog",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    }
+  }
+}

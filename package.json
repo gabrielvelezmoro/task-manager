@@ -1,0 +1,52 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "node-version": "11",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "sequelize-ts": "ts-node-dev node_modules/.bin/sequelize",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --no-notify src/server.ts",
+    "dev:debug": "ts-node-dev --inspect -r tsconfig-paths/register  --respawn --no-notify src/server.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-rate-limit": "^5.1.1",
+    "helmet": "^3.21.3",
+    "mongoose": "^5.9.3",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^7.0.2",
+    "yup": "^0.28.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "@types/helmet": "^0.0.45",
+    "@types/mongoose": "^5.7.3",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^20.14.10",
+    "@types/sequelize": "^4.28.8",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "morgan": "^1.9.1",
+    "prettier": "^1.19.1",
+    "sequelize-cli": "^5.5.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.8.3"
+  }
+}
