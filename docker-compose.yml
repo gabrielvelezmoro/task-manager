@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  lw-network:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres
+    container_name: tasks
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=gabriel
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=tasks
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
+    driver: local
