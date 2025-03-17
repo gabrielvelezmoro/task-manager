@@ -6,17 +6,19 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { TaskDTO } from './task.dto';
 import { TaskService } from './task.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('task')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
   @Post()
   create(@Body() task: TaskDTO) {
     this.taskService.create(task);
-    console.log(task);
   }
 
   @Get('/:id')
