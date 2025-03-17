@@ -18,8 +18,8 @@ export class AuthService {
     );
   }
 
-  signIn(email: string, passwd: string): AuthResponseDTO {
-    const foundUser = this.userService.findByEmail(email);
+  async signIn(email: string, passwd: string): Promise<AuthResponseDTO> {
+    const foundUser = await this.userService.findByEmail(email);
 
     console.log(foundUser);
     if (!foundUser || !bcryptCompareSync(passwd, foundUser.passwd)) {

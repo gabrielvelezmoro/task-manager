@@ -27,17 +27,17 @@ export class TaskController {
   }
 
   @Get()
-  findAll(): TaskDTO[] {
+  findAll() {
     return this.taskService.findAll();
   }
 
   @Patch('/:id')
   update(@Body() task: TaskDTO, @Param('id') id: string) {
-    this.taskService.update(id, task);
+    return this.taskService.update(id, task);
   }
 
   @Delete('/:id')
   delete(@Param('id') id: string) {
-    this.taskService.delete(id);
+    return this.taskService.delete(id);
   }
 }
