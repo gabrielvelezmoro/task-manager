@@ -18,26 +18,26 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
   @Post()
   create(@Body() task: TaskDTO) {
-    this.taskService.create(task);
+    return this.taskService.create(task);
   }
 
   @Get('/:id')
   getById(@Param('id') id: string) {
-    return this.taskService.findById(id);
+    this.taskService.findById(id);
   }
 
   @Get()
   findAll() {
-    return this.taskService.findAll();
+    this.taskService.findAll();
   }
 
   @Patch('/:id')
   update(@Body() task: TaskDTO, @Param('id') id: string) {
-    return this.taskService.update(id, task);
+    this.taskService.update(id, task);
   }
 
   @Delete('/:id')
   delete(@Param('id') id: string) {
-    return this.taskService.delete(id);
+    this.taskService.delete(id);
   }
 }
