@@ -16,6 +16,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @Controller('task')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
+
   @Post()
   create(@Body() task: TaskDTO) {
     return this.taskService.create(task);
@@ -23,21 +24,21 @@ export class TaskController {
 
   @Get('/:id')
   getById(@Param('id') id: string) {
-    this.taskService.findById(id);
+    return this.taskService.findById(id);
   }
 
   @Get()
   findAll() {
-    this.taskService.findAll();
+    return this.taskService.findAll();
   }
 
   @Patch('/:id')
   update(@Body() task: TaskDTO, @Param('id') id: string) {
-    this.taskService.update(id, task);
+    return this.taskService.update(id, task);
   }
 
   @Delete('/:id')
   delete(@Param('id') id: string) {
-    this.taskService.delete(id);
+    return this.taskService.delete(id);
   }
 }

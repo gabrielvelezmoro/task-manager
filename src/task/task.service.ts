@@ -1,17 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TaskDTO, TaskStatusEnum } from './task.dto';
 import { PrismaService } from '../prisma.service';
+import { error } from 'console';
 
 @Injectable()
 export class TaskService {
   private readonly prisma: PrismaService;
 
-  async create(task: TaskDTO) {
+  create(task: TaskDTO) {
     task.status = TaskStatusEnum.PENDING;
     try {
-      await this.prisma.task.create({ data: task });
-    } catch {
-      throw new NotFoundException('Task not found');
+      const response = this.prisma.task.create({ data: task });
+      console.log(response);
+      return response;
+    } catch (e) {
+      console.log(error);
+      throw new e();
     }
   }
 
