@@ -36,15 +36,21 @@ export class TaskService {
 
   async update(id: string, task: TaskDTO) {
     try {
-      await this.prisma.task.update({ where: { id }, data: { ...task } });
+      await this.prisma.task.update({
+        where: { id },
+        data: {
+          ...task,
+          due_date: new Date(task.due_date).toISOString(),
+        },
+      });
     } catch {
       throw new NotFoundException('Task not found');
     }
   }
 
-  delete(id: string) {
+  async delete(id: string) {
     try {
-      this.prisma.task.delete({ where: { id } });
+      await this.prisma.task.delete({ where: { id } });
     } catch {
       throw new NotFoundException('Task not found');
     }
