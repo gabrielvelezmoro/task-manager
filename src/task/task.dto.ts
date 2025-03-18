@@ -1,4 +1,10 @@
-import { IsDateString, IsEnum, IsOptional, IsString } from 'class-validator';
+import {
+  IsDate,
+  IsDateString,
+  IsEnum,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export enum TaskStatusEnum {
   PENDING = 'PENDING',
@@ -7,6 +13,10 @@ export enum TaskStatusEnum {
 }
 
 export class TaskDTO {
+  @IsString()
+  @IsOptional()
+  id: string;
+
   @IsString()
   title: string;
 
@@ -18,10 +28,15 @@ export class TaskDTO {
   status: string;
 
   @IsDateString()
-  due_date: Date;
+  due_date: string;
 
-  @IsString()
-  content: string;
+  @IsDate()
+  @IsOptional()
+  created_at: Date;
+
+  @IsDate()
+  @IsOptional()
+  updated_at: Date;
 }
 
 export interface FindAllDTO {
