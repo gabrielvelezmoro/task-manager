@@ -12,12 +12,15 @@ model User {
   email  String  @unique
   name   String?
   passwd String
+  Task   Task[]
 }
 
 model Task {
   id          String    @id @default(uuid())
   title       String
   description String?
+  User        User?     @relation(fields: [user_id], references: [id])
+  user_id     String?
   due_date    DateTime?
   status      String?   @default("PENDING")
   created_at  DateTime? @default(now())
