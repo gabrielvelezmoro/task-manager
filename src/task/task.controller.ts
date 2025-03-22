@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -34,6 +35,7 @@ export class TaskController {
   }
 
   @Patch('/:id')
+  @HttpCode(204)
   update(@Body() task: TaskDTO, @Param('id') id: string, @Request() req) {
     return this.taskService.update(id, task, req.user.sub);
   }

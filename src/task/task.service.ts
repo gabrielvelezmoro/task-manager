@@ -1,19 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TaskDTO, TaskStatusEnum } from './task.dto';
 import { PrismaService } from '../prisma.service';
-import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(task: TaskDTO, userId: string) {
-    task.id = uuid();
     task.status = TaskStatusEnum.PENDING;
     const response = await this.prisma.task.create({
       data: {
         ...task,
-        due_date: new Date(task.due_date).toISOString(),
+        due_date: new Date(task.due_date),
+        created_at: new Date(),
         user_id: userId,
       },
     });
@@ -46,7 +45,8 @@ export class TaskService {
         where: { id, user_id },
         data: {
           ...task,
-          due_date: new Date(task.due_date).toISOString(),
+          due_date: new Date(task.due_date),
+          updated_at: new Date(),
         },
       });
     } catch {
