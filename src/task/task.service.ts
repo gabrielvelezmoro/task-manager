@@ -4,19 +4,25 @@ import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class TaskService {
-  private readonly prisma: PrismaService;
+  constructor(private readonly prisma: PrismaService) {}
 
-  async create(task: TaskDTO) {
+  async create(task: TaskDTO, userId: string) {
     task.status = TaskStatusEnum.PENDING;
-    try {
-      await this.prisma.task.create({ data: task });
-    } catch {
-      throw new NotFoundException('Task not found');
-    }
+    const response = await this.prisma.task.create({
+      data: {
+        ...task,
+        due_date: new Date(task.due_date),
+        created_at: new Date(),
+        user_id: userId,
+      },
+    });
+    return response;
   }
 
-  async findById(id: string) {
-    const foundTask = await this.prisma.task.findMany({ where: { id } });
+  async findById(id: string, user_id: string) {
+    const foundTask = await this.prisma.task.findMany({
+      where: { id, user_id },
+    });
 
     if (foundTask.length >= 0) {
       return foundTask;
@@ -24,26 +30,33 @@ export class TaskService {
     throw new NotFoundException('Task not found');
   }
 
-  async findAll() {
+  async findAll(user_id: string) {
     try {
-      const foundTask = await this.prisma.task.findMany();
+      const foundTask = await this.prisma.task.findMany({ where: { user_id } });
       return foundTask;
     } catch {
-      throw new NotFoundException('Task not found');
+      throw new NotFoundException('Tasks not found');
     }
   }
 
-  async update(id: string, task: TaskDTO) {
+  async update(id: string, task: TaskDTO, user_id: string) {
     try {
-      await this.prisma.task.update({ where: { id }, data: { ...task } });
+      await this.prisma.task.update({
+        where: { id, user_id },
+        data: {
+          ...task,
+          due_date: new Date(task.due_date),
+          updated_at: new Date(),
+        },
+      });
     } catch {
       throw new NotFoundException('Task not found');
     }
   }
 
-  delete(id: string) {
+  async delete(id: string, user_id: string) {
     try {
-      this.prisma.task.delete({ where: { id } });
+      await this.prisma.task.delete({ where: { id, user_id } });
     } catch {
       throw new NotFoundException('Task not found');
     }
