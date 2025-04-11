@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -30,8 +31,8 @@ export class TaskController {
   }
 
   @Get()
-  findAll(@Request() req) {
-    return this.taskService.findAll(req.user.sub);
+  findAll(@Query('status') status: string, @Request() req) {
+    return this.taskService.findAll(req.user.sub, status);
   }
 
   @Patch('/:id')
