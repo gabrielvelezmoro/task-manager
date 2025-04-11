@@ -30,10 +30,19 @@ export class TaskService {
     throw new NotFoundException('Task not found');
   }
 
-  async findAll(user_id: string) {
+  async findAll(user_id: string, status?: string) {
     try {
-      const foundTask = await this.prisma.task.findMany({ where: { user_id } });
-      return foundTask;
+      if (status) {
+        const foundTask = await this.prisma.task.findMany({
+          where: { user_id, status },
+        });
+        return foundTask;
+      } else {
+        const foundTask = await this.prisma.task.findMany({
+          where: { user_id },
+        });
+        return foundTask;
+      }
     } catch {
       throw new NotFoundException('Tasks not found');
     }
