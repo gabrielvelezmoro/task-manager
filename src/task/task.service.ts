@@ -30,19 +30,27 @@ export class TaskService {
     throw new NotFoundException('Task not found');
   }
 
-  async findAll(user_id: string, status?: string) {
+  async findAll(user_id: string, status?: string, search?: string) {
     try {
       if (status) {
         const foundTask = await this.prisma.task.findMany({
           where: { user_id, status },
         });
         return foundTask;
-      } else {
-        const foundTask = await this.prisma.task.findMany({
-          where: { user_id },
-        });
-        return foundTask;
-      }
+      } else if (search)
+        if (search) {
+          const foundTask = await this.prisma.task.findMany({
+            where: {
+              OR: [{ title: search }, { description: search }],
+              AND: [{ user_id }],
+            },
+          });
+          return foundTask;
+        }
+      const foundTask = await this.prisma.task.findMany({
+        where: { user_id },
+      });
+      return foundTask;
     } catch {
       throw new NotFoundException('Tasks not found');
     }

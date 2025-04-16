@@ -31,8 +31,12 @@ export class TaskController {
   }
 
   @Get()
-  findAll(@Query('status') status: string, @Request() req) {
-    return this.taskService.findAll(req.user.sub, status);
+  findAll(
+    @Query('status') status: string,
+    @Query('search') search: string,
+    @Request() req,
+  ) {
+    return this.taskService.findAll(req.user.sub, status, search);
   }
 
   @Patch('/:id')
